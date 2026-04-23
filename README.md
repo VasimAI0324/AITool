@@ -1,0 +1,2 @@
+# AITool
+Learning phase
