@@ -1,8 +1,14 @@
-from google import genai 
-from dotenv import load_dotenv 
-import os 
-load_dotenv() 
-client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY")) 
-response = client.models.generate_content(model="gemini-2.0-flash-lite", contents="Hello! Kya tu mujhe AI sikhayega?") 
+from groq import Groq
+from dotenv import load_dotenv
+import os
 
-print(response.text) 
+load_dotenv()
+
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
+response = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    messages=[{"role": "user", "content": "Hello! Kya tu mujhe AI sikhayega?"}]
+)
+
+print(response.choices[0].message.content)
